@@ -1,13 +1,14 @@
 <?php
 
 
-$edad = $_POST["edad"];
+$cedula = $_POST["cedula"];
 $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
-$n_hijos = $_POST["n_hijos"];
+$telefono = $_POST["telefono"];
+$correo = $_POST["correo"];
 
 
-function registrar($edad, $nombre, $apellido, $n_hijos)
+function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 {
 	require("conexion.php");
     $connection = mysqli_connect($servidor,$usuario,$contrasena);
@@ -20,12 +21,12 @@ function registrar($edad, $nombre, $apellido, $n_hijos)
 		die("Can not use database: " .mysqli_error());
 	}
 
-	$query = 'INSERT INTO persona (edad,nombre,apellido,n_hijos) 	VALUES("'.$edad.'","'.$nombre.'","'.$apellido.'","'.$n_hijos.'");';
+	$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
 	echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
 
 	mysqli_close($connection);
-	echo "persona registrada con exito";
+	echo "cliente registrada con exito";
 }
 
 registrar($edad, $nombre, $apellido, $n_hijos);
