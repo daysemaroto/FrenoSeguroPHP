@@ -1,14 +1,17 @@
+
 <?php
 
 
-$cedula = $_POST["cedula"];
-$nombre = $_POST["nombre"];
-$apellido = $_POST["apellido"];
-$telefono = $_POST["telefono"];
-$correo = $_POST["correo"];
+$fechaMantenimiento = date("Y/m/d");
+$bujias = $_POST["bujias"];
+$aceite = $_POST["aceite"];
+$frenos = $_POST["frenos"];
+$filtroAire = $_POST["filtroAire"];
+$filtroCombustibe=$_POST["filtroCombustibe"];
+$alineacion=$_POST["alineacion"];
+$estadoId=$_POST["estadoId"];
 
-
-function registrar($cedula, $nombre, $apellido, $telefono,$correo)
+function registrar($fechaMantenimiento, $bujias, $aceite, $frenos,$filtroAire,$filtroCombustibe,$alineacion,$estadoId)
 {
 	require("conexion.php");
     $connection = mysqli_connect($servidor,$usuario,$contrasena);
@@ -21,7 +24,7 @@ function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 		die("Can not use database: " .mysqli_error());
 	}
 
-	$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
+	$query = 'INSERT INTO mantenimiento (fechaMantenimiento,bujias,aceite,frenos,filtroAire,filtroCombustibe,alineacion,estadoId) 	VALUES("'.$fechaMantenimiento.'","'.$bujias.'","'.$aceite.'","'.$frenos.'","'.$filtroAire.'","'.$filtroCombustibe.'","'.$alineacion.'","'.$estadoId.'");';
 
 	//echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
@@ -34,34 +37,47 @@ function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>Tabla Cliente</title>
+		<title>Tabla Estado</title>
 	</head>
 	<body>
-		<h1>Cliente registrado con exito</h1>
+		<h1>Mantenimiento de Auto registrado con exito</h1>
 	
 <table class="egt" border="3">
 
   <tr>
-    <td>Cedula</td>
-    <td><?php echo $cedula;?></td>
+    <td>Fecha de Mantenimiento</td>
+    <td><?php echo $fechaMantenimiento;?></td>
   </tr>
 
   <tr>
-    <td>Nombre</td>
-    <td><?php echo $nombre;?></td>
+    <td>bujias</td>
+    <td><?php echo $bujias;?></td>
   </tr>
 
   <tr>
-    <td>Apellido</td>
-    <td><?php echo $apellido;?></td>
+    <td>aceite</td>
+    <td><?php echo $aceite;?></td>
   </tr>
   <tr>
-    <td>Telefono</td>
-    <td><?php echo $telefono;?></td>
+    <td>frenos</td>
+    <td><?php echo $frenos;?></td>
   </tr>
   <tr>
-    <td>Correo</td>
-    <td><?php echo $correo;?></td>
+    <td>filtro de Aire</td>
+    <td><?php echo $filtroAire;?></td>
+  </tr>
+
+  <tr>
+    <td>filtro de Combustible</td>
+    <td><?php echo $filtroCombustibe;?></td>
+  </tr>
+  <tr>
+    <td>alineacion</td>
+    <td><?php echo $alineacion;?></td>
+  </tr>
+  <tr>
+    <td>estado inicial</td>
+    <td><?php echo $estadoId;?></td>
   </tr>
 
 </table>
@@ -73,7 +89,7 @@ function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 	<?php
 }
 
-registrar($cedula, $nombre, $apellido, $telefono,$correo);
+registrar($fechaMantenimiento, $bujias, $aceite, $frenos,$filtroAire, $filtroCombustibe, $alineacion,$estadoId);
 
 function consultar($cedula){
 	require("conexion.php");
@@ -88,7 +104,7 @@ function consultar($cedula){
 	
 
 
-	//$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
+	//$query = 'INSERT INTO cliente (cedula,bujias,aceite,frenos,filtroAire) 	VALUES("'.$cedula.'","'.$bujias.'","'.$aceite.'","'.$frenos.'","'.$filtroAire.'");';
 	$query= 'SELECT * FROM cliente WHERE cedula= "'.$cedula.'"';
 	echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
@@ -99,7 +115,7 @@ function consultar($cedula){
 	
 }
 
-function actualizar($cedula, $nombre, $apellido, $telefono,$correo)
+function actualizar($cedula, $bujias, $aceite, $frenos,$filtroAire)
 {
 	require("conexion.php");
     $connection = mysqli_connect($servidor,$usuario,$contrasena);
@@ -112,9 +128,9 @@ function actualizar($cedula, $nombre, $apellido, $telefono,$correo)
 		die("Can not use database: " .mysqli_error());
 	}
 	
-	//$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
+	//$query = 'INSERT INTO cliente (cedula,bujias,aceite,frenos,filtroAire) 	VALUES("'.$cedula.'","'.$bujias.'","'.$aceite.'","'.$frenos.'","'.$filtroAire.'");';
 	
-	$query= 'UPDATE cliente SET nombre="'.$nombre.'", apellido="'.$apellido.'",telefono="'.$telefono.'",correo="'.$correo.'"';
+	$query= 'UPDATE cliente SET bujias="'.$bujias.'", aceite="'.$aceite.'",frenos="'.$frenos.'",filtroAire="'.$filtroAire.'"';
 	echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
 

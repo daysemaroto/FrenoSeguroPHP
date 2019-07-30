@@ -1,15 +1,17 @@
 <?php
 
 
-$cedula = $_POST["cedula"];
-$nombre = $_POST["nombre"];
-$apellido = $_POST["apellido"];
-$telefono = $_POST["telefono"];
-$correo = $_POST["correo"];
+$fechaIngreso = date("Y/m/d");
+$kilometraje = $_POST["kilometraje"];
+$estadoLlanta = $_POST["estadoLlanta"];
+$estadoLuces = $_POST["estadoLuces"];
+$estadoMotor = $_POST["estadoMotor"];
+$placa=$_POST["placa"];
 
 
-function registrar($cedula, $nombre, $apellido, $telefono,$correo)
+function registrar($fechaIngreso, $kilometraje, $estadoLlanta, $estadoLuces,$estadoMotor,$placa)
 {
+
 	require("conexion.php");
     $connection = mysqli_connect($servidor,$usuario,$contrasena);
 	if (!$connection){
@@ -21,7 +23,7 @@ function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 		die("Can not use database: " .mysqli_error());
 	}
 
-	$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
+	$query = 'INSERT INTO estado (fechaIngreso,kilometraje,estadoLlanta,estadoLuces,estadoMotor,placa) 	VALUES("'.$fechaIngreso.'","'.$kilometraje.'","'.$estadoLlanta.'","'.$estadoLuces.'","'.$estadoMotor.'","'.$placa.'");';
 
 	//echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
@@ -34,34 +36,39 @@ function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>Tabla Cliente</title>
+		<title>Tabla Estado</title>
 	</head>
 	<body>
-		<h1>Cliente registrado con exito</h1>
+		<h1>Estado de Auto registrado con exito</h1>
 	
 <table class="egt" border="3">
 
   <tr>
-    <td>Cedula</td>
-    <td><?php echo $cedula;?></td>
+    <td>Fecha de Ingreso</td>
+    <td><?php echo $fechaIngreso;?></td>
   </tr>
 
   <tr>
-    <td>Nombre</td>
-    <td><?php echo $nombre;?></td>
+    <td>kilometraje</td>
+    <td><?php echo $kilometraje;?></td>
   </tr>
 
   <tr>
-    <td>Apellido</td>
-    <td><?php echo $apellido;?></td>
+    <td>estado de Llanta</td>
+    <td><?php echo $estadoLlanta;?></td>
   </tr>
   <tr>
-    <td>Telefono</td>
-    <td><?php echo $telefono;?></td>
+    <td>estado de Luces</td>
+    <td><?php echo $estadoLuces;?></td>
   </tr>
   <tr>
-    <td>Correo</td>
-    <td><?php echo $correo;?></td>
+    <td>estado de Motor</td>
+    <td><?php echo $estadoMotor;?></td>
+  </tr>
+
+  <tr>
+    <td>placa</td>
+    <td><?php echo $placa;?></td>
   </tr>
 
 </table>
@@ -73,7 +80,7 @@ function registrar($cedula, $nombre, $apellido, $telefono,$correo)
 	<?php
 }
 
-registrar($cedula, $nombre, $apellido, $telefono,$correo);
+registrar($fechaIngreso, $kilometraje, $estadoLlanta, $estadoLuces,$estadoMotor, $placa);
 
 function consultar($cedula){
 	require("conexion.php");
@@ -88,7 +95,7 @@ function consultar($cedula){
 	
 
 
-	//$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
+	//$query = 'INSERT INTO cliente (cedula,kilometraje,estadoLlanta,estadoLuces,estadoMotor) 	VALUES("'.$cedula.'","'.$kilometraje.'","'.$estadoLlanta.'","'.$estadoLuces.'","'.$estadoMotor.'");';
 	$query= 'SELECT * FROM cliente WHERE cedula= "'.$cedula.'"';
 	echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
@@ -99,7 +106,7 @@ function consultar($cedula){
 	
 }
 
-function actualizar($cedula, $nombre, $apellido, $telefono,$correo)
+function actualizar($cedula, $kilometraje, $estadoLlanta, $estadoLuces,$estadoMotor)
 {
 	require("conexion.php");
     $connection = mysqli_connect($servidor,$usuario,$contrasena);
@@ -112,9 +119,9 @@ function actualizar($cedula, $nombre, $apellido, $telefono,$correo)
 		die("Can not use database: " .mysqli_error());
 	}
 	
-	//$query = 'INSERT INTO cliente (cedula,nombre,apellido,telefono,correo) 	VALUES("'.$cedula.'","'.$nombre.'","'.$apellido.'","'.$telefono.'","'.$correo.'");';
+	//$query = 'INSERT INTO cliente (cedula,kilometraje,estadoLlanta,estadoLuces,estadoMotor) 	VALUES("'.$cedula.'","'.$kilometraje.'","'.$estadoLlanta.'","'.$estadoLuces.'","'.$estadoMotor.'");';
 	
-	$query= 'UPDATE cliente SET nombre="'.$nombre.'", apellido="'.$apellido.'",telefono="'.$telefono.'",correo="'.$correo.'"';
+	$query= 'UPDATE cliente SET kilometraje="'.$kilometraje.'", estadoLlanta="'.$estadoLlanta.'",estadoLuces="'.$estadoLuces.'",estadoMotor="'.$estadoMotor.'"';
 	echo $query;
 	$result= mysqli_query($connection,$query) or die('consulta fallida: '.mysqli_error());
 

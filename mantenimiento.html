@@ -1,0 +1,35 @@
+<title>Registro Mantenimiento de Auto</title>
+<h1>Registro Mantenimiento de Auto</h1>
+<form action="mantenimiento.php" method="post">
+		<p>Cambio de bujias: <select name="bujias">
+						  <option value="si">Si</option>
+						  <option value="no">No</option>
+						</select></p>
+		<p>Cambio de aceite: <select name="aceite">
+						  <option value="si">Si</option>
+						  <option value="no">No</option>
+						</select></p>
+		<p>Cambio de frenos: <select name="frenos">
+						  <option value="si">Si</option>
+						  <option value="no">No</option>
+						</select></p>
+		<p>Cambio de filtro de Aire: <select name="filtroAire">
+						  <option value="si">Si</option>
+						  <option value="no">No</option>
+						</select></p>
+		<p>Cambio de filtro de Combustible: <select name="filtroCombustibe">
+						  <option value="si">Si</option>
+						  <option value="no">No</option>
+						</select></p>
+		<p>Cambio de alineacione: <select name="alineacion">
+						  <option value="si">Si</option>
+						  <option value="no">No</option>
+						</select></p>
+
+
+
+	
+	<p>La estado inicial del vehiculo: <input type="text" name="estadoId" /></p>
+	<p><input type="submit" value="Registrar"></p>
+	<p><input type="submit" id="btnRegresar" name="btnRegresar" onclick = "this.form.action = 'principal.html'"  value="Regresar" formtarget="_self"></p>
+</form>

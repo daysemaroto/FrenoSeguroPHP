@@ -1,0 +1,23 @@
+<title>Registro Estado de Auto</title>
+<h1>Registro Estado de Auto</h1>
+<form action="estado.php" method="post">
+	<p>Su kilometraje: <input type="text" name="kilometraje" /></p>
+	<p>Su estado llanta: <select name="estadoLlanta">
+						  <option value="Bueno">Bueno</option>
+						  <option value="Intermedio">Intermedio</option>
+						  <option value="Malo">Malo</option>
+						</select></p>
+	<p>Su estado luces: <select name="estadoLuces">
+						  <option value="Bueno">Bueno</option>
+						  <option value="Intermedio">Intermedio</option>
+						  <option value="Malo">Malo</option>
+						</select></p>
+	<p>Su estado motor: <select name="estadoMotor">
+						  <option value="Bueno">Bueno</option>
+						  <option value="Intermedio">Intermedio</option>
+						  <option value="Malo">Malo</option>
+						</select></p>
+	<p>La placa del vehiculo: <input type="text" name="placa" /></p>
+	<p><input type="submit" value="Registrar"></p>
+	<p><input type="submit" id="btnRegresar" name="btnRegresar" onclick = "this.form.action = 'principal.html'"  value="Regresar" formtarget="_self"></p>
+</form>
